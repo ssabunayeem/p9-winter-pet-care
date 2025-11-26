@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
+// import React, { useContext } from 'react';
 import { Link } from 'react-router';
 // import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
 
-    const { registerWithEmailPassword } = useContext(AuthContext);
+    /* const { registerWithEmailPassword } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         const email = e.target.email.value;
         const pass = e.target.password.value;
 
-        // console.log("auth data", email, pass);
+        console.log("auth data", email, pass);
 
-    }
+    } */
 
 
     return (
