@@ -8,10 +8,10 @@ const Login = () => {
 
             <div className='bg-[#525CEB] text-center shadow-2xl p-5 md:p-15 rounded-full'>
                 <div className='bg-linear-to-r from-cyan-300 via-white to-sky-400 bg-clip-text text-transparent'>
-                    <a className="text-3xl lg:text-5xl font-bold">WinterPetCare</a>
+                    <a className="text-2xl lg:text-4xl font-bold">WinterPetCare</a>
                 </div>
                 <p className='text-white p-0 m-0 mt-5 text-lg'>don't have a account</p>
-                <div className="text-2xl lg:text-3xl text-white font-bold underline"> <Link to={'/signup'}>Register now!</Link> </div>
+                <div className="text-lg lg:text-xl text-white font-bold underline"> <Link to={'/signup'}>Register now!</Link> </div>
             </div>
 
             <div className="card bg-[#dae3ee] w-[350px] md:w-[650px] md:p-8 shrink-0 shadow-2xl rounded-4xl">

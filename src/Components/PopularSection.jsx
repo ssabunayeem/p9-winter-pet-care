@@ -13,7 +13,7 @@ const PopularSection = () => {
     }, [])
 
 
-    console.log(services);
+    // console.log(services);
 
 
     return (
