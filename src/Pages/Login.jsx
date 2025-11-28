@@ -1,13 +1,35 @@
-import React from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
+import auth from '../firebase/firebase.config';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
+
+    const { setUser, user } = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const pass = e.target.password.value;
+
+        signInWithEmailAndPassword(auth, email, pass)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                setUser(user)
+
+            })
+            .catch((error) => {
+                console.log(error);
+
+            });
+
+
     }
+
+
+    console.log(user);
+
 
 
     return (
@@ -30,7 +52,7 @@ const Login = () => {
 
             <div className="card bg-[#dae3ee] w-[350px] md:w-[650px] md:p-8 shrink-0 shadow-2xl rounded-4xl">
                 <div className="card-body">
-                    <form onClick={handleSubmit} className="fieldset">
+                    <form onSubmit={handleSubmit} className="fieldset">
 
                         <label className="label text-lg">Email</label>
                         <input name='email' type="email" className="input w-full py-6 text-lg rounded-full"
