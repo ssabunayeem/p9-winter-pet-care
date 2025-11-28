@@ -6,7 +6,7 @@ import auth from '../firebase/firebase.config';
 
 const Register = () => {
 
-    const { registerWithEmailPassword } = useContext(AuthContext);
+    const { registerWithEmailPassword, setUser, user } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +24,7 @@ const Register = () => {
                 updateProfile(auth.currentUser, {
                     displayName: name, photoURL: photoUrl
                 }).then(() => {
-                    console.log(userCredential.user)
+                    setUser(userCredential.user)
                 }).catch((error) => {
                     console.log(error)
                 });
@@ -35,9 +35,9 @@ const Register = () => {
 
             })
 
-
-
     }
+
+    console.log(user)
 
 
     return (
