@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PiSignInBold } from "react-icons/pi";
 import { Link } from 'react-router';
+import { AuthContext } from '../Provider/AuthProvider';
+import { signOut } from 'firebase/auth';
+import auth from '../firebase/firebase.config';
 
 
 const Navbar = () => {
+
+    const { user } = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        signOut(auth)
+    }
+
     return (
 
         <div className='z-40'>
@@ -34,11 +44,29 @@ const Navbar = () => {
                         <li><Link to='/'>My Profile</Link></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <Link to={'/login'} className="btn btn-ghost hover:btn-primary shadow-none border-0 text-white text-xl">
-                        <PiSignInBold />
-                        Login</Link>
-                </div>
+
+
+                {
+                    user && <div className="navbar-end">
+                        <button onClick={handleSignOut} className="btn btn-ghost hover:btn-primary shadow-none border-0 text-white text-xl">
+                            Logout
+                            <PiSignInBold />
+                        </button>
+                    </div>
+                }
+
+                {
+                    !user && <div className="navbar-end">
+                        <Link to={'/login'} className="btn btn-ghost hover:btn-primary shadow-none border-0 text-white text-xl">
+                            <PiSignInBold />
+                            Login
+                        </Link>
+                    </div>
+                }
+
+
+
+
             </div>
         </div>
 
