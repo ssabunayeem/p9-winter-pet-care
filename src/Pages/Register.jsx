@@ -1,18 +1,43 @@
-// import React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
-// import { AuthContext } from '../Provider/AuthProvider';
+import { AuthContext } from '../Provider/AuthProvider';
+import { updateProfile } from 'firebase/auth';
+import auth from '../firebase/firebase.config';
 
 const Register = () => {
 
-    /* const { registerWithEmailPassword } = useContext(AuthContext);
+    const { registerWithEmailPassword } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const email = e.target.email.value;
         const pass = e.target.password.value;
+        const name = e.target.name.value;
+        const photoUrl = e.target.photoUrl.value;
 
-        console.log("auth data", email, pass);
+        console.log(name, photoUrl);
 
-    } */
+
+        registerWithEmailPassword(email, pass)
+            .then((userCredential) => {
+
+                updateProfile(auth.currentUser, {
+                    displayName: name, photoURL: photoUrl
+                }).then(() => {
+                    console.log(userCredential.user)
+                }).catch((error) => {
+                    console.log(error)
+                });
+
+
+            }).catch(err => {
+                console.log(err);
+
+            })
+
+
+
+    }
 
 
     return (
@@ -29,16 +54,22 @@ const Register = () => {
 
                 <div className="card bg-[#dae3ee] w-[350px] md:w-[650px] md:p-8 shrink-0 shadow-2xl rounded-4xl">
                     <div className="card-body">
-                        <form className="fieldset">
+                        <form onSubmit={handleSubmit} className="fieldset">
+
                             <label className="label text-lg">Name</label>
-                            <input name='Name' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Your Name" />
+                            <input name='name' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Your Name" />
+
                             <label className="label text-lg">PhotoUrl</label>
-                            <input name='PhotoUrl' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="PhotoUrl" />
+                            <input name='photoUrl' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Photo Url" />
+
                             <label className="label text-lg">Email</label>
                             <input name='email' type="email" className="input w-full py-6 text-lg rounded-full" placeholder="Email" />
+
                             <label className="label text-lg">Password</label>
                             <input name='password' type="password" className="input w-full py-6 text-lg rounded-full" placeholder="Password" />
+
                             <button className="btn btn-neutral rounded-full bg-[#525CEB] mt-4 py-6 text-lg">Sign up</button>
+
                         </form>
                     </div>
                 </div>

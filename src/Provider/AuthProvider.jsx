@@ -8,6 +8,8 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
 
     const registerWithEmailPassword = (email, pass) => {
+
+        // console.log("from register data: ", email, pass)
         return createUserWithEmailAndPassword(auth, email, pass)
     }
 
