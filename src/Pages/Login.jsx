@@ -4,9 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import auth from '../firebase/firebase.config';
 import { AuthContext } from '../Provider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 
 
 const Login = () => {
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const { setUser, handleGoogleSignin } = useContext(AuthContext)
     const [email, setEmail] = useState('')
@@ -81,7 +85,23 @@ const Login = () => {
                             placeholder="Email" />
 
                         <label className="label text-lg">Password</label>
-                        <input name='password' type="password" className="input w-full py-6 text-lg rounded-full" placeholder="Password" />
+                        <div className="relative">
+                            <input
+                                name='password'
+                                type={showPassword ? "text" : "password"}
+                                className="input w-full py-6 text-lg rounded-full pr-16"
+                                placeholder="Password"
+                            />
+
+                            <span
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer text-xl"
+                            >
+                                {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+
+                            </span>
+                        </div>
+
 
                         <div><button onClick={handleForget} className="link link-hover text-lg text-red-700">Forgot password?</button></div>
 

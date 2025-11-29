@@ -1,16 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import { FcGoogle } from "react-icons/fc";
 import toast, { Toaster } from 'react-hot-toast';
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 
 
 
 const Register = () => {
 
     const { registerWithEmailPassword, setUser, user, handleGoogleSignin } = useContext(AuthContext);
-
+    const [showPassword, setShowPassword] = useState(false);
 
 
     const handleSubmit = (e) => {
@@ -94,7 +96,22 @@ const Register = () => {
                             <input name='email' type="email" className="input w-full py-6 text-lg rounded-full" placeholder="Email" />
 
                             <label className="label text-lg">Password</label>
-                            <input name='password' type="password" className="input w-full py-6 text-lg rounded-full" placeholder="Password" />
+                            <div className="relative">
+                                <input
+                                    name='password'
+                                    type={showPassword ? "text" : "password"}
+                                    className="input w-full py-6 text-lg rounded-full pr-16"
+                                    placeholder="Password"
+                                />
+
+                                <span
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer text-xl"
+                                >
+                                    {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+
+                                </span>
+                            </div>
 
                             <button className="btn btn-neutral rounded-xl bg-[#525CEB] mt-4 py-6 text-lg">Register</button>
                             <Toaster
