@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import auth from '../firebase/firebase.config';
 import { AuthContext } from '../Provider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
@@ -9,6 +9,9 @@ import { FcGoogle } from "react-icons/fc";
 const Login = () => {
 
     const { setUser, handleGoogleSignin } = useContext(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(location);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,6 +22,7 @@ const Login = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 setUser(user)
+                navigate(location.state)
 
             })
             .catch((error) => {
