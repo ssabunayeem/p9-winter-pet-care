@@ -5,7 +5,7 @@ A responsive React-based winter pet-care web application designed to help pet ow
 ## 🚀 Live Demo
 
 **Surge    Link:** *http://p9-winter-pet-care.surge.sh/*
-**Firebase Link:** *[Add your deployed link here](https://winter-pet-care-b12.web.app)*
+**Firebase Link:** *https://winter-pet-care-b12.web.app*
 
 ---
 
