@@ -102,7 +102,7 @@ npm install
 npm run dev
 ```
 
-The project will run at: **[http://localhost:5173](http://localhost:5173)**
+The project will run at: **http://localhost:5173**
 
 ---
 
@@ -122,17 +122,23 @@ You can deploy easily using Surge:
 
 ```bash
 npm run build
-cd dist
-surge
+surge dist
 ```
 
 Or use **Vercel / Netlify** by uploading the build folder.
+
+or use **firebase**
+
+```bash
+npm run build
+firebase deploy
+```
 
 ---
 
 ## 📸 Screenshots
 
-*Add your project screenshots here (optional).*
+*project screenshots here (optional).*
 
 ---
 

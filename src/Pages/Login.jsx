@@ -18,12 +18,12 @@ const Login = () => {
         const email = e.target.email.value;
         const pass = e.target.password.value;
 
+
         signInWithEmailAndPassword(auth, email, pass)
             .then((userCredential) => {
                 const user = userCredential.user;
                 setUser(user)
                 navigate(location.state)
-
             })
             .catch((error) => {
                 console.log(error);
@@ -39,6 +39,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
+                navigate(location.state)
             })
             .catch(err => console.log(err))
     }
