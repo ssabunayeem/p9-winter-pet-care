@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const PopularSection = () => {
 
@@ -45,7 +46,11 @@ const PopularSection = () => {
                                 </div>
 
                                 <div className="card-actions justify-end">
-                                    <button className="btn btn-circle bg-[#525CEB] w-full text-white">View Details</button>
+                                    <button className="btn btn-circle bg-[#525CEB] w-full text-white">
+                                        <Link to={`/details/${service?.serviceId}`}>
+                                            View Details
+                                        </Link>
+                                    </button>
                                 </div>
 
                             </div>

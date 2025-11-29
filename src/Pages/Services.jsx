@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const Services = () => {
 
@@ -40,8 +41,13 @@ const Services = () => {
                                     <p className='text-right'>Rating: {service?.rating}</p>
                                 </div>
 
+
                                 <div className="card-actions justify-end">
-                                    <button className="btn btn-circle bg-[#525CEB] w-full text-white">View Details</button>
+                                    <button className="btn btn-circle bg-[#525CEB] w-full text-white">
+                                        <Link to={`/details/${service?.serviceId}`}>
+                                            View Details
+                                        </Link>
+                                    </button>
                                 </div>
 
                             </div>
