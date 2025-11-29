@@ -1,16 +1,36 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { updateProfile } from 'firebase/auth';
+import auth from '../firebase/firebase.config';
 
 const Profile = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
-    console.log(user);
+    // console.log(user);
 
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenForm = () => {
         setIsOpen(!isOpen);
+    }
+
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const photoUrl = e.target.photoUrl.value;
+
+
+
+        updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photoUrl
+        }).then(() => {
+            setUser({ ...user, photoURL: photoUrl, displayName: name })
+        }).catch((error) => {
+            console.log(error)
+        });
+
     }
 
 
@@ -30,7 +50,7 @@ const Profile = () => {
                 isOpen && (
                     <div className="card  w-[350px] md:w-[650px] md:p-8 shrink-0 rounded-xl">
                         <div className="card-body">
-                            <form className="fieldset">
+                            <form onSubmit={handleUpdate} className="fieldset">
 
                                 <label className="label text-lg">Name</label>
                                 <input defaultValue={user?.displayName} name='name' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Your Name" />
