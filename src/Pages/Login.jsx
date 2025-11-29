@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import auth from '../firebase/firebase.config';
 import { AuthContext } from '../Provider/AuthProvider';
@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 const Login = () => {
 
     const { setUser, handleGoogleSignin } = useContext(AuthContext)
+    const [email, setEmail] = useState('')
     const location = useLocation();
     const navigate = useNavigate();
     console.log(location);
@@ -39,7 +40,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
-                navigate(location.state)
+                navigate(location.state ? location.state : '/')
             })
             .catch(err => console.log(err))
     }
@@ -47,7 +48,10 @@ const Login = () => {
     // console.log(user);
 
 
+    const handleForget = () => {
+        navigate(`/forget/${email}`)
 
+    }
 
 
     return (
@@ -73,13 +77,13 @@ const Login = () => {
                     <form onSubmit={handleSubmit} className="fieldset">
 
                         <label className="label text-lg">Email</label>
-                        <input name='email' type="email" className="input w-full py-6 text-lg rounded-full"
+                        <input onChange={(e) => setEmail(e.target.value)} name='email' type="email" className="input w-full py-6 text-lg rounded-full"
                             placeholder="Email" />
 
                         <label className="label text-lg">Password</label>
                         <input name='password' type="password" className="input w-full py-6 text-lg rounded-full" placeholder="Password" />
 
-                        <div><a className="link link-hover text-lg text-red-700">Forgot password?</a></div>
+                        <div><button onClick={handleForget} className="link link-hover text-lg text-red-700">Forgot password?</button></div>
 
                         <button className="btn btn-neutral rounded-xl bg-[#525CEB] py-6 text-lg">Login</button>
 

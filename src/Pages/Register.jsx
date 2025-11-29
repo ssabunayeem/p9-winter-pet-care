@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import { FcGoogle } from "react-icons/fc";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 
 const Register = () => {
 
     const { registerWithEmailPassword, setUser, user, handleGoogleSignin } = useContext(AuthContext);
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,13 +26,13 @@ const Register = () => {
         const lowercase = /[a-z]/;
 
         if (pass.length < 6) {
-            return alert("less than 6 character")
+            return toast("less than 6 character")
         }
         if (!uppercase.test(pass)) {
-            return alert("need a Uppercase")
+            return toast("need a Uppercase")
         }
         if (!lowercase.test(pass)) {
-            return alert("need a lowercase")
+            return toast("need a lowercase")
         }
 
 
@@ -94,10 +97,19 @@ const Register = () => {
                             <input name='password' type="password" className="input w-full py-6 text-lg rounded-full" placeholder="Password" />
 
                             <button className="btn btn-neutral rounded-xl bg-[#525CEB] mt-4 py-6 text-lg">Register</button>
-
+                            <Toaster
+                                toastOptions={{
+                                    style: {
+                                        fontSize: '28px',     // text-5xl এর মতো
+                                        padding: '20px',      // p-5 এর মতো
+                                        borderRadius: '12px',
+                                    },
+                                }}
+                            />
                             <p className='text-base mt-2'>Sign up With... </p>
 
                             <button onClick={googleSignup} className="btn py-6 text-lg text-gray-500 rounded-full"><FcGoogle />Google </button>
+
 
                         </form>
                     </div>

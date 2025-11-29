@@ -44,28 +44,30 @@ const Profile = () => {
 
             <p className='font-bold text-2xl m-0'>{user?.displayName}</p>
             <p className='text-xl'>{user?.email}</p>
-            <button onClick={handleOpenForm} className="btn btn-primary bg-[#525CEB] text-xl">Update Profile</button>
+            <button onClick={handleOpenForm} className=" btn btn-primary bg-[#525CEB] text-xl">Update Profile</button>
 
-            {
-                isOpen && (
-                    <div className="card  w-[350px] md:w-[650px] md:p-8 shrink-0 rounded-xl">
-                        <div className="card-body">
-                            <form onSubmit={handleUpdate} className="fieldset">
+            <div>
+                {
+                    isOpen && (
+                        <div className="card  w-[350px] md:w-[650px] md:p-8 shrink-0 rounded-xl animate__animated animate__backInDown">
+                            <div className="card-body">
+                                <form onSubmit={handleUpdate} className="fieldset">
 
-                                <label className="label text-lg">Name</label>
-                                <input defaultValue={user?.displayName} name='name' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Your Name" />
+                                    <label className="label text-lg">Name</label>
+                                    <input defaultValue={user?.displayName} name='name' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Your Name" />
 
-                                <label className="label text-lg">PhotoUrl</label>
-                                <input defaultValue={user?.photoURL} name='photoUrl' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Photo Url" />
+                                    <label className="label text-lg">PhotoUrl</label>
+                                    <input defaultValue={user?.photoURL} name='photoUrl' type="text" className="input w-full py-6 text-lg rounded-full" placeholder="Photo Url" />
 
-                                <button className="btn btn-neutral rounded-2xl bg-[#525CEB] mt-6 py-6 text-lg">Update Now</button>
+                                    <button className="btn btn-neutral rounded-2xl bg-[#525CEB] mt-6 py-6 text-lg">Update Now</button>
 
 
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                )
-            }
+                    )
+                }
+            </div>
         </div>
     );
 };
