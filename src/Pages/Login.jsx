@@ -3,10 +3,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router';
 import auth from '../firebase/firebase.config';
 import { AuthContext } from '../Provider/AuthProvider';
+import { FcGoogle } from "react-icons/fc";
+
 
 const Login = () => {
 
-    const { setUser, user } = useContext(AuthContext)
+    const { setUser, handleGoogleSignin } = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,7 +30,18 @@ const Login = () => {
     }
 
 
-    console.log(user);
+    const googleSignin = () => {
+        handleGoogleSignin()
+            .then(result => {
+                const user = result.user
+                setUser(user)
+            })
+            .catch(err => console.log(err))
+    }
+
+    // console.log(user);
+
+
 
 
 
@@ -61,10 +74,14 @@ const Login = () => {
                         <label className="label text-lg">Password</label>
                         <input name='password' type="password" className="input w-full py-6 text-lg rounded-full" placeholder="Password" />
 
+                        <div><a className="link link-hover text-lg text-red-700">Forgot password?</a></div>
 
-                        <div><a className="link link-hover text-lg">Forgot password?</a></div>
+                        <button className="btn btn-neutral rounded-xl bg-[#525CEB] py-6 text-lg">Login</button>
 
-                        <button className="btn btn-neutral rounded-full bg-[#525CEB] mt-4 py-6 text-lg">Login</button>
+
+                        <p className='text-base mt-2'>Sign in With... </p>
+
+                        <button onClick={googleSignin} className="btn py-6 text-lg text-gray-500 rounded-full"><FcGoogle />Google </button>
 
                     </form>
                 </div>

@@ -26,9 +26,9 @@ const Navbar = () => {
                         <ul
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-[#525CEB] text-white rounded-box z-50 mt-3 w-52 p-2 shadow">
-                            <li><a>Home</a></li>
-                            <li><a>Services</a></li>
-                            <li><a>My Profile</a></li>
+                            <li><Link to='/'>Home</Link></li>
+                            <li><Link to='/services'>Services</Link></li>
+                            <li><Link to={'/profile'}>My Profile</Link></li>
                         </ul>
                     </div>
                     <div className='bg-linear-to-r from-cyan-300 via-white to-sky-400 bg-clip-text text-transparent'>
@@ -41,7 +41,7 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1 space-x-10">
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/services'>Services</Link></li>
-                        <li><Link to='/'>My Profile</Link></li>
+                        <li><Link to={'/profile'}>My Profile</Link></li>
                     </ul>
                 </div>
 
@@ -49,8 +49,8 @@ const Navbar = () => {
                 {
                     user && <div className="navbar-end">
                         <button onClick={handleSignOut} className="btn btn-ghost hover:btn-primary shadow-none border-0 text-white text-xl">
+                            <PiSignInBold className='text-2xl rotate-180' />
                             Logout
-                            <PiSignInBold />
                         </button>
                     </div>
                 }
@@ -58,7 +58,7 @@ const Navbar = () => {
                 {
                     !user && <div className="navbar-end">
                         <Link to={'/login'} className="btn btn-ghost hover:btn-primary shadow-none border-0 text-white text-xl">
-                            <PiSignInBold />
+                            <PiSignInBold className='text-2xl' />
                             Login
                         </Link>
                     </div>

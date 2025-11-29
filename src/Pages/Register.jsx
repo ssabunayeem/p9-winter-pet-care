@@ -3,10 +3,12 @@ import { Link } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
+import { FcGoogle } from "react-icons/fc";
+
 
 const Register = () => {
 
-    const { registerWithEmailPassword, setUser, user } = useContext(AuthContext);
+    const { registerWithEmailPassword, setUser, user, handleGoogleSignin } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,6 +42,15 @@ const Register = () => {
     console.log(user)
 
 
+    const googleSignup = () => {
+        handleGoogleSignin()
+            .then(result => {
+                const user = result.user
+                setUser(user)
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <div>
             <div className='flex flex-col  gap-5 justify-center items-center p-7'>
@@ -68,7 +79,11 @@ const Register = () => {
                             <label className="label text-lg">Password</label>
                             <input name='password' type="password" className="input w-full py-6 text-lg rounded-full" placeholder="Password" />
 
-                            <button className="btn btn-neutral rounded-full bg-[#525CEB] mt-4 py-6 text-lg">Sign up</button>
+                            <button className="btn btn-neutral rounded-xl bg-[#525CEB] mt-4 py-6 text-lg">Register</button>
+
+                            <p className='text-base mt-2'>Sign up With... </p>
+
+                            <button onClick={googleSignup} className="btn py-6 text-lg text-gray-500 rounded-full"><FcGoogle />Google </button>
 
                         </form>
                     </div>
